@@ -25,4 +25,6 @@ public class CharacterAiming : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.fixedDeltaTime);
         }
     }
+
+    
 }
