@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 764574346}
   - component: {fileID: 764574349}
   - component: {fileID: 764574348}
+  - component: {fileID: 764574350}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -567,6 +568,21 @@ MonoBehaviour:
   m_Offset: {x: 0.48, y: 0.18, z: -3.45}
   m_ApplyAfter: 1
   m_PreserveComposition: 0
+--- !u!114 &764574350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764574345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
 --- !u!136 &962165124
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -921,7 +937,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177745646}
-  m_LocalRotation: {x: 0.0055009522, y: -0.000000017208224, z: 9.466305e-11, w: 0.99998486}
+  m_LocalRotation: {x: 0.0055009522, y: 0.000000017208222, z: -9.466304e-11, w: 0.99998486}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1154,6 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea57874d22a2aac4ebe781e4636ce03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impulse: {fileID: 0}
   dragEffect: {fileID: 198851160684645201}
   bloodEffect: {fileID: 1708294164}
   weapon: {fileID: 1465762107351428}
@@ -1410,8 +1427,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: -0.0006674535, y: -0.00000003290393, z: 1.4361973e-10, w: 0.9999998}
-  m_LocalPosition: {x: 0.48000008, y: 1.7993248, z: -6.0637803}
+  m_LocalRotation: {x: -0.0006674535, y: 0.000000012540489, z: -1.3334057e-10, w: 0.9999998}
+  m_LocalPosition: {x: 0.4799999, y: 1.7993248, z: -6.0637803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 977557748}
@@ -2026,7 +2043,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130652373}
-  m_LocalRotation: {x: -0.0126411375, y: -3.8573567e-10, z: -4.8765276e-12, w: 0.9999201}
+  m_LocalRotation: {x: -0.012641139, y: 5.507097e-25, z: -4.1608046e-26, w: 0.9999201}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2108,7 +2125,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.29e-43, y: 9.4e-44, z: 0, w: 23.041733}
+  m_BoundingSphereOverride: {x: 0, y: 561152, z: 0, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -26014,6 +26031,8 @@ GameObject:
   - component: {fileID: 4737325339277531409}
   - component: {fileID: 4737325339277531410}
   - component: {fileID: 4737325339277531411}
+  - component: {fileID: 4737325339277531413}
+  - component: {fileID: 4737325339277531412}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -26033,6 +26052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5f6fb142aec4c4c81382b747d484dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rawInput: {x: 0, y: 0}
   acceleration: 4
   decceleration: 3
 --- !u!114 &4737325339277531404
@@ -26079,17 +26099,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefb2ad68437cb64e9e5ffd21806c14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blink: {fileID: 4737325339277531413}
+  goldLinkColor: {r: 1, g: 0.9654912, b: 0, a: 0}
+  goldLinkIntensity: 3
+  goldLinkDuration: 0.13
+  canGoldLink: 0
+  missedGoldLink: 0
   currentWeapon: {fileID: 1465762107351428}
   weaponMat: {fileID: 2100000, guid: ad68ca277b548684aa785bba4cd246c6, type: 2}
-  glowColor: {r: 0.4523423, g: 1, b: 0.1273585, a: 0}
+  glowColor: {r: 1, g: 1, b: 1, a: 0}
   glowIntensity: 10
   offset: 1.5
   target: {fileID: 4341461117009925}
   isAttacking: 0
-  currentCombo: 1
-  anticipationSpeed: 0.6
-  recoverySpeed: 0.59
-  attackSpeed: 0.9
+  anticipationSpeed: 0.5
+  recoverySpeed: 0.4
+  attackSpeed: 0.6
 --- !u!54 &4737325339277531407
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26159,6 +26184,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+--- !u!114 &4737325339277531412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737325339277531402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: -1.111111
+          outSlope: -1.111111
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -1.111111
+          outSlope: -1.111111
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
+--- !u!114 &4737325339277531413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737325339277531402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0369df7783be142afc9dbaba9f3d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 4637355120291363120}
 --- !u!1 &4737355464604505256
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class CharacterLocomotion : MonoBehaviour
     CharacterAiming CA;
     Animator animator;
     Vector2 input;
-    Vector2 rawInput;
+    public Vector2 rawInput;
 
     [SerializeField] private float acceleration, decceleration;
     // Start is called before the first frame update

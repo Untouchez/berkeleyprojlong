@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 public class Hitbox : MonoBehaviour
 {
+    public CinemachineImpulseSource impulse;
     public static CharacterAttack CA;
     public ParticleSystem dragEffect;
     public ParticleSystem bloodEffect;
@@ -31,6 +33,7 @@ public class Hitbox : MonoBehaviour
                 StartCoroutine(EnteredSomething());
                 bloodEffect.transform.position = other.ClosestPoint(transform.position);
                 bloodEffect.Play(true);
+                impulse?.GenerateImpulse();
             }
         }   
 
