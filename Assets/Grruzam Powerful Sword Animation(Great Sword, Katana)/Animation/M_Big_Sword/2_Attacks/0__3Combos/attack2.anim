@@ -29442,7 +29442,7 @@ AnimationClip:
     m_LoopBlendPositionXZ: 0
     m_KeepOriginalOrientation: 1
     m_KeepOriginalPositionY: 0
-    m_KeepOriginalPositionXZ: 1
+    m_KeepOriginalPositionXZ: 0
     m_HeightFromFeet: 1
     m_Mirror: 0
   m_EditorCurves:
@@ -62548,21 +62548,21 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.33333334
     functionName: OpenColliders
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.46666667
+  - time: 0.5
     functionName: CloseColliders
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
+  - time: 0.56666666
     functionName: Recovery
     data: 
     objectReferenceParameter: {fileID: 0}

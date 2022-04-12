@@ -8,20 +8,22 @@ public class CharacterAttack : MonoBehaviour
     Animator anim;
     CharacterAiming CA;
     CharacterLocomotion CL;
+
     public Blink blink;
     public Color goldLinkColor;
     public float goldLinkIntensity;
     public float goldLinkDuration;
     public bool canGoldLink;
     public bool missedGoldLink;
+    [Space(10)]
     public Weapon currentWeapon;
     public Material weaponMat;
     public Color glowColor;
     public float glowIntensity;
-    public float offset;
-    public Transform target;
+
     public bool isAttacking;
 
+    [Space(10)]
     public float anticipationSpeed;
     public float recoverySpeed;
     public float attackSpeed;
@@ -30,13 +32,9 @@ public class CharacterAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         CA = GetComponent<CharacterAiming>();
-        weaponMat.EnableKeyword("_EMISSION");
+        CL = GetComponent<CharacterLocomotion>();
 
-        isAttacking = false;
-        anim.speed = 1f;
-        anim.ResetTrigger("gold_attack");
-        anim.ResetTrigger("attack");
-        canGoldLink = false;
+        weaponMat.EnableKeyword("_EMISSION");
     }
 
     // Update is called once per frame
@@ -44,22 +42,27 @@ public class CharacterAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (isAttacking && !canGoldLink)
+            if (isAttacking)
             {
-                blink.BlinkME(goldLinkDuration * 2f, goldLinkIntensity, Color.red);
-                missedGoldLink = true;
-            }
-            TeleportToTarget();
-            if(!canGoldLink || missedGoldLink)            
+                if (!canGoldLink) //MISSED GOLD LINK
+                {
+                    if(!missedGoldLink)
+                        blink.BlinkME(goldLinkDuration, goldLinkIntensity, Color.red);
+                    anim.SetTrigger("attack");
+                    missedGoldLink = true;
+                } else { // GOLD LINK ATTACK 
+                    blink.BlinkME(goldLinkDuration * 2f, goldLinkIntensity, Color.green);
+                    anim.SetTrigger("gold_attack");
+                }
+            } else { // FIRST ATTACK
                 anim.SetTrigger("attack");
-            else
-                anim.SetTrigger("gold_attack");
-
+            }
+            StartCoroutine(IsAttackingCheck());
             isAttacking = true;
-            StartCoroutine(IsAttackingCheck());      
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             anim.SetTrigger("special");
             isAttacking = true;
@@ -89,7 +92,7 @@ public class CharacterAttack : MonoBehaviour
     public IEnumerator IsAttackingCheck()
     {
         yield return new WaitForSeconds(0.25F); // for transition
-        yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+        yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         isAttacking = false;
         anim.speed = 1f;
         anim.ResetTrigger("gold_attack");
@@ -136,10 +139,7 @@ public class CharacterAttack : MonoBehaviour
     public void Recovery()
     {
         anim.speed = recoverySpeed;
-        if(!missedGoldLink)
-            blink.BlinkME(goldLinkDuration, goldLinkIntensity, goldLinkColor);
-        else
-            blink.BlinkME(goldLinkDuration*2f, goldLinkIntensity, Color.red);
+        blink.BlinkME(goldLinkDuration, goldLinkIntensity, goldLinkColor);
         canGoldLink = true;
         StartCoroutine(Recover());
         StartCoroutine(EndGoldLink());
@@ -156,5 +156,11 @@ public class CharacterAttack : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         GlowWeapon(0f, glowColor);
         anim.speed = 1f;
+    }
+
+    public void OnParticleCollision(GameObject other)
+    {
+        print("particle hit me");
+
     }
 }
